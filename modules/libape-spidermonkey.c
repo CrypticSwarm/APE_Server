@@ -651,7 +651,10 @@ static JSBool sm_send_raw(JSContext *cx, transpipe *to_pipe, int chl, uintN argc
 		} else if (from_pipe != NULL && from_pipe->type == CUSTOM_PIPE) {
 			json_set_property_objN(jstr, "pipe", 4, get_json_object_pipe(from_pipe));
 		}
+	} else if(to_pipe->type == CHANNEL_PIPE) {
+		json_set_property_objN(jstr, "pipe", 4, get_json_object_pipe(to_pipe));
 	}
+
 
 	/* in the case of sendResponse */
 	/* TODO : May be borken if to_pipe->type == CHANNNEL and from == USER */
